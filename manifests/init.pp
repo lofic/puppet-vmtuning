@@ -6,16 +6,20 @@ class vmtuning {
     if str2bool($::is_virtual) {
 
         sysctl { 'vm.swappiness' :
-            value     => 0,
-            permanent => yes, }
+            ensure => present,
+            value  => 0,
+        }
 
         sysctl { 'vm.dirty_ratio' :
-            value     => 40,
-            permanent => yes, }
+            ensure => present,
+            value  => 40,
+        }
 
         sysctl { 'vm.dirty_background_ratio' :
-            value     => 15,
-            permanent => yes, }
-
+            ensure => present,
+            value  => 15,
         }
+
+    }
+
 }
