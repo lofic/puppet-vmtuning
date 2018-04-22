@@ -2,15 +2,20 @@
 # See also tuned-adm with profile virtual-guest
 
 class vmtuning {
-    sysctl { 'vm.swappiness' :
-        value     => 0,
-        permanent => yes, }
 
-    sysctl { 'vm.dirty_ratio' :
-        value     => 40,
-        permanent => yes, }
+    if str2bool($::is_virtual) {
 
-    sysctl { 'vm.dirty_background_ratio' :
-        value     => 15,
-        permanent => yes, }
+        sysctl { 'vm.swappiness' :
+            value     => 0,
+            permanent => yes, }
+
+        sysctl { 'vm.dirty_ratio' :
+            value     => 40,
+            permanent => yes, }
+
+        sysctl { 'vm.dirty_background_ratio' :
+            value     => 15,
+            permanent => yes, }
+
+        }
 }
